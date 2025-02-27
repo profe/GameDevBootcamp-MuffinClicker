@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Security;
 
 /// <summary>
 /// Algorithm:
