@@ -1,14 +1,13 @@
+using UnityEngine;
+using TMPro;
+using System.Security;
+
 /// <summary>
 /// Algorithm:
 /// 1. Float the text upwards
 /// 2. Fade the text
 /// 3. Destroy the text
 /// </summary>
-
-using UnityEngine;
-using TMPro;
-using System.Security;
-
 public class FloatingText : MonoBehaviour
 {
     private float _timer;
@@ -41,7 +40,7 @@ public class FloatingText : MonoBehaviour
         if(_text.color.a <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("Game Object destroyed!");
+            //Debug.Log("Game Object destroyed!");
         }
     }
 }

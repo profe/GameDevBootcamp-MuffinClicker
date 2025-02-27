@@ -347,6 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436119270}
   - component: {fileID: 436119271}
+  - component: {fileID: 436119272}
   m_Layer: 5
   m_Name: MuffinContent
   m_TagString: Untagged
@@ -388,24 +389,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d67627889fa435ea93f1700aeeb3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _muffinsPerClick: 1
-  _minSpinSpeed: 0
-  _maxSpinSpeed: 360
-  _spinSpeeds: []
-  _pulseSpeed: 1
-  _pulseAmplitude: 1
-  _pulseOffset: 1
-  _xMinRandomMuffin: -150
-  _xMaxRandomMuffin: 180
-  _yMinRandomMuffin: -15
-  _yMaxRandomMuffin: -150
-  _critChance: 0.01
-  _criticalHitMultiplier: 10
-  _totalMuffinsText: {fileID: 1710630146}
+  _gameManager: {fileID: 670332722}
+  _textRewardPrefab: {fileID: 7464358279451195372, guid: 332d85efc96304b81a9eed7021df89ac, type: 3}
+  _minXPos: -150
+  _maxXPos: 180
+  _minYPos: -15
+  _maxYPos: -150
+--- !u!114 &436119272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436119269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46cab60a6cd04970b85f1ec748d76e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _spinLights:
   - {fileID: 1594047314}
   - {fileID: 28660337}
-  _textRewardPrefab: {fileID: 7464358279451195372, guid: 332d85efc96304b81a9eed7021df89ac, type: 3}
+  _spinSpeeds: []
+  _minSpinSpeed: 0
+  _maxSpinSpeed: 360
+  _pulseSpeed: 1
+  _pulseAmplitude: 1
+  _pulseOffset: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +537,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466df78af891f419b897f31f50690732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _header: {fileID: 2098545963}
+  _critChance: 0.01
+  _criticalHitMultiplier: 10
 --- !u!4 &670332723
 Transform:
   m_ObjectHideFlags: 0
@@ -1233,7 +1246,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1898,6 +1911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098545962}
+  - component: {fileID: 2098545963}
   m_Layer: 5
   m_Name: Header
   m_TagString: Untagged
@@ -1927,6 +1941,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &2098545963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098545961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9ce100ebb7a4cf08d89e6144c21359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalMuffinsText: {fileID: 1710630146}
 --- !u!1 &2145348622
 GameObject:
   m_ObjectHideFlags: 0
