@@ -1,11 +1,11 @@
 using UnityEngine;
 using TMPro;
-
 public class UpgradeButton : MonoBehaviour
 {
     private int _level;
 
     [SerializeField] private float _costPowerScale = 1.5f;
+    [SerializeField] private UpgradeType _upgradeType;
 
     //GAME OBJECTS
     [SerializeField] private TextMeshProUGUI _levelText;
@@ -15,6 +15,7 @@ public class UpgradeButton : MonoBehaviour
     public void Start()
     {
         UpdateUI();
+        _gameManager.OnTotalMuffinsChanged.AddListener(TotalMuffinsChanged);
     }
 
     private int CurrentCost
@@ -31,19 +32,9 @@ public class UpgradeButton : MonoBehaviour
         _costText.color = canAfford ? Color.green : Color.red;
     }
 
-    public void OnMuffinUpgradeClicked()
+    public void OnUpgradeClicked()
     {
-        bool purchasedUpgrade = _gameManager.TryMuffinPurchaseUpgrade(CurrentCost, _level);
-        if (purchasedUpgrade)
-        {
-            _level++;
-            UpdateUI();
-        }
-    }
-
-    public void OnSugarRushUpgradeClicked()
-    {
-        bool purchasedUpgrade = _gameManager.TrySugarRushPurchaseUpgrade(CurrentCost, _level);
+        bool purchasedUpgrade = _gameManager.TryPurchaseUpgrade(CurrentCost, _level, _upgradeType);
         if (purchasedUpgrade)
         {
             _level++;

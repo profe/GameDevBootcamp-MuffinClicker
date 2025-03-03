@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 {
     private int _totalMuffins;
     private int _muffinsPerClick = 1;
-    [SerializeField] private int _muffinsPerSecond;
-    private float _timer;
+    private int _muffinsPerSecond;
+    private float _muffinsPerSecondTimer;
 
     //EVENTS
     public UnityEvent<int> OnTotalMuffinsChanged;
@@ -56,44 +56,41 @@ public class GameManager : MonoBehaviour
         TotalMuffins = 0;
         //init for muffins per second upgrade
         MuffinsPerSecond = 0;
-        _timer = 0f;
+        _muffinsPerSecondTimer = 0f;
     }
 
     void Update()
     {
         //timer for muffins per second upgrade
-        _timer += Time.deltaTime;
-        if (_timer >= 1.0f)
+        _muffinsPerSecondTimer += Time.deltaTime;
+        if (_muffinsPerSecondTimer >= 1)
         {
-            _timer -= 1.0f;
+            _muffinsPerSecondTimer--;
             TotalMuffins += MuffinsPerSecond;
         }
     }
 
-
-    public bool TryMuffinPurchaseUpgrade(int currentCost, int level)
+    public bool TryPurchaseUpgrade(int currentCost, int level, UpgradeType upgradeType)
     {
         if (TotalMuffins >= currentCost)
         {
+            //handle general things for all upgrades:
             TotalMuffins -= currentCost;
             level++;
-            _muffinsPerClick = 1 + level * 2;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
-    public bool TrySugarRushPurchaseUpgrade(int currentCost, int level)
-    {
-        if (TotalMuffins >= currentCost)
-        {
-            TotalMuffins -= currentCost;
-            level++;
-            MuffinsPerSecond++; //or some other calc based on level?
-            //_muffinsPerClick = 1 + level * 2;
+            //handle upgrade specific things:
+            switch (upgradeType)
+            {
+                case UpgradeType.MuffinUpgrade:
+                    _muffinsPerClick = 1 + level * 2;
+                    break;
+                case UpgradeType.SugarRushUpgrade:
+                    MuffinsPerSecond = level;
+                    break;
+                case UpgradeType.FancyMuffinUpgrade:
+                    ///TODO: do fancy muffin thing here
+                    break;
+            }
             return true;
         }
         else
